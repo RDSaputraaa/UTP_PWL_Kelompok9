@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MenuController;
+
+Route::resource('admin/menus', MenuController::class)->names('admin.menus');
+Route::get('/catalog', [MenuController::class, 'catalog'])->name('user.catalog');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])
