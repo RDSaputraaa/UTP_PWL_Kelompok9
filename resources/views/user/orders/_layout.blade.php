@@ -58,34 +58,6 @@
 <body>
 
     <nav class="navbar navbar-expand-lg bg-white wk-nav py-3">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center wk-brand" href="{{ route('user.catalog') }}">
-                <span class="wk-logo">W</span>warung<span>kita.</span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#wkNav" aria-controls="wkNav" aria-expanded="false" aria-label="Buka menu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="wkNav">
-                <ul class="navbar-nav mx-lg-auto gap-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link wk-link {{ request()->routeIs('user.catalog', 'user.orders.create') ? 'active' : '' }}" href="{{ route('user.catalog') }}">Menu Makanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link wk-link {{ request()->routeIs('user.orders.index') ? 'active' : '' }}" href="{{ route('user.orders.index') }}">Pesanan Saya</a>
-                    </li>
-                </ul>
-
-                <div class="d-flex align-items-center gap-3">
-                    <span class="wk-muted small">{{ auth()->user()->name }}</span>
-                    <form action="{{ route('logout') }}" method="POST" class="m-0">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-wk btn-sm px-3">Logout</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </nav>
 
     <main class="container py-5">

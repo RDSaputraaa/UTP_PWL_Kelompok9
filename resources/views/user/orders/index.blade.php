@@ -1,15 +1,14 @@
-@extends('user.orders._layout')
-
-@section('title', 'Pesanan Saya | warungkita')
+@extends('layouts.navbar_user')
 
 @section('content')
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
-        <div>
-            <h2 class="fw-bold mb-1">Pesanan Saya</h2>
-            <p class="wk-muted mb-0">Pesanan bisa dibatalkan selama statusnya masih Masuk.</p>
+    <div class="container py-4" style="max-width: 1200px;">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">Pesanan Saya</h2>
+                <p class="wk-muted mb-0">Pesanan bisa dibatalkan selama statusnya masih Masuk.</p>
+            </div>
+            <a href="{{ route('user.catalog') }}" class="btn btn-wk rounded-3 px-4">Pesan menu lain</a>
         </div>
-        <a href="{{ route('user.catalog') }}" class="btn btn-wk rounded-3 px-4">Pesan menu lain</a>
-    </div>
 
     @php
         $badge = [
@@ -89,5 +88,6 @@
         <div class="d-flex justify-content-end mt-3">
             {{ $orders->links('pagination::bootstrap-5') }}
         </div>
+    <div>
     @endif
 @endsection

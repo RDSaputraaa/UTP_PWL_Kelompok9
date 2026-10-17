@@ -48,7 +48,7 @@
                             <tr>
                                 <td>{{ $orders->firstItem() + $key }}</td>
                                 <td>{{ $order->user->name ?? 'User Tidak Dikenal' }}</td>
-                                <td>{{ $order->menu->name ?? 'Menu Dihapus' }}</td>
+                                <td>{{ $order->menu->nama_menu ?? 'Menu Dihapus' }}</td>
                                 <td>{{ $order->quantity }}</td>
                                 <td>
                                     Rp {{ number_format($order->total_price, 0, ',', '.') }}
@@ -58,8 +58,8 @@
                                     @php
                                         $badgeColors = [
                                             'masuk' => 'bg-warning text-dark',
-                                            'diproses' => 'bg-secondary',
-                                            'selesai' => 'bg-dark'
+                                            'diproses' => 'bg-primary',
+                                            'selesai' => 'bg-success'
                                         ];
                                     @endphp
 
