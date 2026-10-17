@@ -43,7 +43,7 @@
                         </p>
 
                         <div class="mt-auto">
-                            <a href="#"
+                                     <a href="{{ route('user.orders.create', $menu) }}"
                                class="btn btn-dark w-100 rounded-3 py-2 fw-semibold">
                                 Pesan / Pre-Order
                             </a>

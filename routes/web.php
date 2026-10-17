@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\users\OrderController as UserOrderController;
 
 
 Route::middleware('guest')->group(function () {
@@ -30,6 +31,10 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
         return view('user.dashboard');
     })->name('dashboard');
     Route::get('/catalog', [MenuController::class, 'catalog'])->name('catalog');
+    Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{menu}/create', [UserOrderController::class, 'create'])->name('orders.create');
+    Route::post('/orders', [UserOrderController::class, 'store'])->name('orders.store');
+    Route::delete('/orders/{order}', [UserOrderController::class, 'destroy'])->name('orders.destroy');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
