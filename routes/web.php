@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Admin\OrderController;
 
-Route::get('/catalog', [MenuController::class, 'catalog'])->name('user.catalog');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
@@ -30,6 +29,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
     Route::get('/dashboard', function () {
         return view('user.dashboard');
     })->name('dashboard');
+    Route::get('/catalog', [MenuController::class, 'catalog'])->name('catalog');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
