@@ -35,6 +35,7 @@ class MenuController extends Controller
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_recommended' => 'nullable|boolean',
         ]);
 
         $path = null;
@@ -47,6 +48,7 @@ class MenuController extends Controller
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'foto' => $path,
+            'is_recommended' => $request->boolean('is_recommended'),
         ]);
 
         return redirect()->route('admin.menus.index')->with('success', 'Menu berhasil ditambahkan!');
@@ -78,6 +80,7 @@ class MenuController extends Controller
             'deskripsi' => 'nullable|string',
             'harga' => 'required|numeric',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_recommended' => 'nullable|boolean',
         ]);
 
         $path = $menu->foto;
@@ -93,6 +96,7 @@ class MenuController extends Controller
             'deskripsi' => $request->deskripsi,
             'harga' => $request->harga,
             'foto' => $path,
+            'is_recommended' => $request->boolean('is_recommended'),
         ]);
 
         return redirect()->route('admin.menus.index')->with('success', 'Menu berhasil diupdate!');

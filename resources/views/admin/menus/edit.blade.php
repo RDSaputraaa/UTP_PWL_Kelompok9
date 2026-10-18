@@ -59,6 +59,14 @@
                             @error('foto') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
+                        <div class="form-check mb-4">
+                            <input type="checkbox" name="is_recommended" value="1" id="is_recommended"
+                                   class="form-check-input" @checked(old('is_recommended', $menu->is_recommended))>
+                            <label for="is_recommended" class="form-check-label fw-semibold text-dark small">
+                                Tampilkan sebagai menu rekomendasi di dashboard user
+                            </label>
+                        </div>
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-dark rounded-3 px-4 py-2 fw-semibold flex-grow-1">Update Menu</button>
                             <a href="{{ route('admin.menus.index') }}" class="btn btn-light border rounded-3 px-4 py-2 fw-semibold">Kembali</a>

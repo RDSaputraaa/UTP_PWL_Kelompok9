@@ -14,5 +14,13 @@ class Menu extends Model
         'deskripsi',
         'harga',
         'foto',
+        'is_recommended',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_recommended' => 'boolean',
+        ];
+    }
 }

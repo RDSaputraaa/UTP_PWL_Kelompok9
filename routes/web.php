@@ -38,7 +38,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('user.dashboard');
+        $recommendedMenus = Menu::where('is_recommended', true)->latest()->get();
+
+        return view('user.dashboard', compact('recommendedMenus'));
     })->name('dashboard');
     Route::get('/catalog', [MenuController::class, 'catalog'])->name('catalog');
     Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');

@@ -34,6 +34,7 @@
                         <th class="py-3">FOTO</th>
                         <th class="py-3">NAMA MENU</th>
                         <th class="py-3">HARGA</th>
+                        <th class="py-3">REKOMENDASI</th>
                         <th class="py-3">DESKRIPSI</th>
                         <th class="text-end pe-4 py-3">AKSI</th>
                     </tr>
@@ -72,6 +73,14 @@
                                 Rp {{ number_format($menu->harga, 0, ',', '.') }}
                             </td>
 
+                            <td>
+                                @if ($menu->is_recommended)
+                                    <span class="badge bg-success">Direkomendasikan</span>
+                                @else
+                                    <span class="text-muted small">Tidak</span>
+                                @endif
+                            </td>
+
                             <td class="text-muted small">
                                 {{ Str::limit($menu->deskripsi, 50) }}
                             </td>
@@ -98,7 +107,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center py-5 text-muted">
+                            <td colspan="7" class="text-center py-5 text-muted">
                                 Belum ada data menu. Silakan klik tombol Tambah Menu Baru.
                             </td>
                         </tr>
