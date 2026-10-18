@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-dark rounded-3 px-4 py-2 fw-semibold flex-grow-1">Update Menu</button>
+                            <button type="submit" class="btn btn-success rounded-3 px-4 py-2 fw-semibold flex-grow-1">Update Menu</button>
                             <a href="{{ route('admin.menus.index') }}" class="btn btn-light border rounded-3 px-4 py-2 fw-semibold">Kembali</a>
                         </div>
                     </form>
