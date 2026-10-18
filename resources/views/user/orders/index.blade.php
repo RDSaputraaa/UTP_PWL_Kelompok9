@@ -10,6 +10,17 @@
             <a href="{{ route('user.catalog') }}" class="btn btn-wk rounded-3 px-4">Pesan menu lain</a>
         </div>
 
+    @if(session('success'))
+        <div class="alert alert-success border-0 rounded-3">{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger border-0 rounded-3">{{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     @php
         $badge = [
             'masuk'    => ['bg-warning-subtle text-warning-emphasis', 'Masuk'],
@@ -88,6 +99,6 @@
         <div class="d-flex justify-content-end mt-3">
             {{ $orders->links('pagination::bootstrap-5') }}
         </div>
-    <div>
+    </div>
     @endif
 @endsection

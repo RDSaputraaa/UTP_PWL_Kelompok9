@@ -1,8 +1,9 @@
-@extends('user.orders._layout')
+@extends('layouts.navbar_user')
 
 @section('title', 'Pesan ' . $menu->nama_menu . ' | warungkita')
 
 @section('content')
+<div class="container py-4" style="max-width: 1000px;">
     <a href="{{ route('user.catalog') }}" class="text-decoration-none wk-link small">&larr; Kembali ke menu</a>
 
     <div class="row g-4 mt-1">
@@ -79,13 +80,14 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('scripts')
 <script>
     (function () {
-        const price = {{ (int) $menu->harga }};
-        const max = {{ (int) $maxQuantity }};
+        const price = Number("{{ (int) $menu->harga }}");
+        const max = Number("{{ (int) $maxQuantity }}");
         const qty = document.getElementById('quantity');
         const total = document.getElementById('total');
 

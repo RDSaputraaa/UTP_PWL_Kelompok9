@@ -7,6 +7,51 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <style>
+        :root {
+            --wk-green: #198754;
+            --wk-green-dark: #157347;
+            --wk-green-soft: #e8f5e9;
+            --wk-ink: #1b2a23;
+            --wk-line: #e5e9e6;
+        }
+        .btn-wk {
+            background-color: var(--wk-green);
+            border-color: var(--wk-green);
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn-wk:hover, .btn-wk:focus-visible {
+            background-color: var(--wk-green-dark);
+            border-color: var(--wk-green-dark);
+            color: #fff;
+        }
+        .btn-outline-wk {
+            border-color: var(--wk-green);
+            color: var(--wk-green);
+            font-weight: 600;
+        }
+        .btn-outline-wk:hover {
+            background-color: var(--wk-green);
+            color: #fff;
+        }
+        .wk-card {
+            border: 1px solid var(--wk-line);
+            border-radius: 1rem;
+            background: #fff;
+        }
+        .wk-muted {
+            color: #6b7a72;
+        }
+        .wk-link {
+            color: #5b6b63;
+            font-weight: 500;
+        }
+        .wk-link:hover, .wk-link.active {
+            color: var(--wk-green);
+        }
+    </style>
+    @stack('styles')
 </head>
 <body class="bg-light">
 
@@ -58,5 +103,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

@@ -13,14 +13,15 @@
         </div>
 
         <a href="{{ route('admin.menus.create') }}"
-           class="btn btn-dark rounded-3 px-4 py-2 fw-semibold">
+           class="btn btn-success rounded-3 px-4 py-2 fw-semibold">
             + Tambah Menu Baru
         </a>
     </div>
 
     @if (session('success'))
-        <div class="alert alert-success border-0 shadow-sm rounded-3 mb-4">
+        <div class="alert alert-success border-0 shadow-sm rounded-3 mb-4 alert-dismissible fade show">
             {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
@@ -67,7 +68,7 @@
                                 {{ $menu->nama_menu }}
                             </td>
 
-                            <td class="fw-bold text-dark">
+                            <td class="fw-bold text-success">
                                 Rp {{ number_format($menu->harga, 0, ',', '.') }}
                             </td>
 
@@ -77,7 +78,7 @@
 
                             <td class="text-end pe-4">
                                 <a href="{{ route('admin.menus.edit', $menu->id) }}"
-                                   class="btn btn-outline-dark btn-sm rounded-3 px-3 me-1 fw-medium">
+                                   class="btn btn-outline-success btn-sm rounded-3 px-3 me-1 fw-medium">
                                     Edit
                                 </a>
 

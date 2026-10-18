@@ -1,11 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Menu;
+use App\Models\Order;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\users\OrderController as UserOrderController;
 
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
@@ -16,8 +22,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    $totalMenu = Menu::count();
+    $pesananMasuk = Order::where('status', 'masuk')->count();
+    $totalPendapatan = Order::where('status', 'selesai')->sum('total_price');
+    $recentOrders = Order::with(['user', 'menu'])->latest()->take(5)->get();
+    return view('admin.dashboard', compact('totalMenu', 'pesananMasuk', 'totalPendapatan', 'recentOrders'));
+})->name('dashboard');
 
     Route::resource('menus', MenuController::class)->names('menus');
 
@@ -40,11 +50,9 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(f
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::get('/dashboard', function () {
-    $user = auth()->user();
-
+    $user = Auth::user();
     if ($user && $user->role === 'admin') {
-        return redirect()->route('admin.orders.index');
+        return redirect()->route('admin.dashboard');
     }
-
     return redirect()->route('user.dashboard');
 })->middleware('auth')->name('dashboard');
