@@ -16,6 +16,15 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f8fafc;
         }
+        .btn-theme-green {
+            background-color: #0f8a5f;
+            color: #ffffff;
+            border: none;
+        }
+        .btn-theme-green:hover {
+            background-color: #0c6f4d;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +61,7 @@
                         </div>
 
                         <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-dark rounded-3 px-4 py-2 fw-semibold flex-grow-1">Simpan Menu</button>
+                            <button type="submit" class="btn btn-theme-green rounded-3 px-4 py-2 fw-semibold flex-grow-1">Simpan Menu</button>
                             <a href="{{ route('admin.menus.index') }}" class="btn btn-light border rounded-3 px-4 py-2 fw-semibold">Kembali</a>
                         </div>
                     </form>

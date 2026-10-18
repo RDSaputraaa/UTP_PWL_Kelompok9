@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,6 +6,24 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <style>
+        .btn-theme-green {
+            background-color: #0f8a5f;
+            color: #ffffff;
+            border: none;
+        }
+        .btn-theme-green:hover {
+            background-color: #0c6f4d;
+            color: #ffffff;
+        }
+        .text-theme-green {
+            color: #0f8a5f;
+            text-decoration: none;
+        }
+        .text-theme-green:hover {
+            color: #0c6f4d;
+        }
+    </style>
 </head>
 <body class="bg-light">
     <div class="container min-vh-100 d-flex justify-content-center align-items-center">
@@ -33,14 +50,14 @@
                            class="form-control" required>
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100">
+                <button type="submit" class="btn btn-theme-green w-100 py-2 fw-semibold">
                     Login
                 </button>
             </form>
 
             <p class="text-center mt-3 mb-0">
                 Belum punya akun?
-                <a href="{{ route('register') }}">Register</a>
+                <a href="{{ route('register') }}" class="text-theme-green fw-semibold">Register</a>
             </p>
         </div>
     </div>
