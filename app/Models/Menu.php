@@ -23,4 +23,9 @@ class Menu extends Model
             'is_recommended' => 'boolean',
         ];
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

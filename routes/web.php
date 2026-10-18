@@ -38,8 +38,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', function () {
-        $recommendedMenus = Menu::where('is_recommended', true)->latest()->get();
-
+       $recommendedMenus = Menu::withCount('orders')
+            ->orderByDesc('orders_count')
+            ->take(3)
+            ->get();
         return view('user.dashboard', compact('recommendedMenus'));
     })->name('dashboard');
     Route::get('/catalog', [MenuController::class, 'catalog'])->name('catalog');
