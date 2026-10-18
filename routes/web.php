@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\users\OrderController as UserOrderController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -22,12 +23,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-    $totalMenu = Menu::count();
-    $pesananMasuk = Order::where('status', 'masuk')->count();
-    $totalPendapatan = Order::where('status', 'selesai')->sum('total_price');
-    $recentOrders = Order::with(['user', 'menu'])->latest()->take(5)->get();
-    return view('admin.dashboard', compact('totalMenu', 'pesananMasuk', 'totalPendapatan', 'recentOrders'));
-})->name('dashboard');
+        $totalMenu = Menu::count();
+        $pesananMasuk = Order::where('status', 'masuk')->count();
+        $totalPendapatan = Order::where('status', 'selesai')->sum('total_price');
+        $recentOrders = Order::with(['user', 'menu'])->latest()->take(5)->get();
+        return view('admin.dashboard', compact('totalMenu', 'pesananMasuk', 'totalPendapatan', 'recentOrders'));
+    })->name('dashboard');
 
     Route::resource('menus', MenuController::class)->names('menus');
 
@@ -38,17 +39,20 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
     Route::get('/dashboard', function () {
-       $recommendedMenus = Menu::withCount('orders')
+        $recommendedMenus = Menu::withCount('orders')
             ->orderByDesc('orders_count')
-            ->take(3)
+            ->take(6)
             ->get();
         return view('user.dashboard', compact('recommendedMenus'));
     })->name('dashboard');
+
     Route::get('/catalog', [MenuController::class, 'catalog'])->name('catalog');
     Route::get('/orders', [UserOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{menu}/create', [UserOrderController::class, 'create'])->name('orders.create');
     Route::post('/orders', [UserOrderController::class, 'store'])->name('orders.store');
     Route::delete('/orders/{order}', [UserOrderController::class, 'destroy'])->name('orders.destroy');
+
+    Route::post('/profile/photo', [ProfileController::class, 'updateFoto'])->name('profile.photo.update');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');

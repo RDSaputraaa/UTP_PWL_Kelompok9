@@ -13,6 +13,7 @@ class Menu extends Model
         'nama_menu',
         'deskripsi',
         'harga',
+        'kategori',
         'foto',
         'is_recommended',
     ];

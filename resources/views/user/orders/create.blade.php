@@ -7,7 +7,6 @@
     <a href="{{ route('user.catalog') }}" class="text-decoration-none wk-link small">&larr; Kembali ke menu</a>
 
     <div class="row g-4 mt-1">
-        {{-- Ringkasan menu --}}
         <div class="col-lg-5">
             <div class="wk-card overflow-hidden h-100">
                 @if($menu->foto)
@@ -27,8 +26,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- Form pre-order --}}
         <div class="col-lg-7">
             <div class="wk-card p-4 p-md-5">
                 <h4 class="fw-bold mb-1">Pesan dulu, ambil nanti</h4>
